@@ -1,0 +1,19 @@
+<div class="container">
+  <h1>Todays Most Popular Movies!</h1>
+
+  <div class="movies-list">
+    <div class="col-md-3 col-xs-12 text-center" ng-repeat="movie in movies track by $index">
+      <div class="movie-box">
+        <div class="img-box">
+          <img class="img-responsive" src="https://image.tmdb.org/t/p/w500{{movie.poster_path}}" alt="">
+        </div>
+        <div class="movie-info">
+          <h4>{{movie.original_title}}</h4>
+          <h5>Rating: {{movie.vote_average}}</h5>
+          <button class="btn btn-sm btn-primary">Add to favorites</button>
+          <hr>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
