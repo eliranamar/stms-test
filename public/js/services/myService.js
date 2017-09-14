@@ -18,25 +18,20 @@ app.service('myService', function ($http) {
     for (var i = 0; i < this.favorites.length; i++) {
       if (movie.id === this.favorites[i].id) {
         return false;
-      }      
+      }
     }
     this.favorites.push(movie);
   }
 
-  // for getting the favorites
+  // for getting the favorites arr
   this.getFavorites = function () {
     return this.favorites;
   }
 
-  this.removeFromFavorites = function (movie) {
-    console.log(this.favorites);
-    console.log(movie);
-    return true;
-  }
 
+  // remove movie from favorites by index
   this.removeFromFavorites = function (index) {
-    // this.favorites.push(movie);
-    this.favorites.splice(index,1);
+    this.favorites.splice(index, 1);
     return true;
   }
 

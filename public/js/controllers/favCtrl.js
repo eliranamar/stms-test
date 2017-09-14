@@ -1,7 +1,9 @@
 app.controller('favCtrl', function ($scope, myService) {
 
+  //copy favorites to controller scope
   $scope.favorites = myService.getFavorites();
 
+  //
   $scope.removeFromFavorites = function () {
     console.log(this.fav);
     let deleted = myService.removeFromFavorites(this.$index);
@@ -12,6 +14,7 @@ app.controller('favCtrl', function ($scope, myService) {
 
 
   var flag = false;
+  // sort options for array.sort func
   var dynamicSort = function (prop, flag) {
     return function (a, b) {
       if (flag) {
@@ -22,7 +25,7 @@ app.controller('favCtrl', function ($scope, myService) {
     };
   }
 
-  // Sort Favs By Rating
+  // Sort Favs By Propery
   $scope.sortFavs = function (prop) {
     $scope.favorites.sort(dynamicSort(prop, flag));
     flag = !flag;

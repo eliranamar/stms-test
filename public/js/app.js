@@ -1,5 +1,6 @@
 var app = angular.module('myApp', ['ui.router']);
 
+// using ui-router for navigation between pages
 app.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', function ($stateProvider, $urlRouterProvider, $locationProvider) {
   $stateProvider
     .state('home', {

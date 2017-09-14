@@ -2,6 +2,7 @@ app.controller('mainCtrl', function ($scope, myService) {
 
   $scope.movies = [];
 
+  // controller call for api 
   myService.getDataFromAPI()
     .then(function (response) {
       // console.log(response.data);
@@ -12,6 +13,7 @@ app.controller('mainCtrl', function ($scope, myService) {
       console.log(error)
     });
 
+  // add this movie to favorites array in app.service
   $scope.addToFavorites = function () {
     // console.log(this.movie);
     let newFav = this.movie;
