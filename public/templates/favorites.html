@@ -1,3 +1,22 @@
 <div class="container">
   <h1>My Personal Favorites</h1>
+  <button class="btn btn-success" ng-click="sortFavs('vote_average')">Sort By Rating</button>
+  <button class="btn btn-success" ng-click="sortFavs('original_title')">Sort By Name</button>
+  <hr>
+  <div class="favorites-list text-center">
+    <div class="col-md-3 col-xs-12 text-center" ng-repeat="fav in favorites track by $index">
+      <div class="movie-box">
+        <div class="img-box text-center">
+          <img class="img-responsive" src="https://image.tmdb.org/t/p/w500{{fav.poster_path}}" alt="">
+        </div>
+        <div class="movie-info">
+          <h4>{{fav.original_title}}</h4>
+          <h5>Rating: {{fav.vote_average}}</h5>
+          <button class="btn btn-sm btn-primary" ng-click="removeFromFavorites()">Remove from favorites</button>
+          <hr>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>

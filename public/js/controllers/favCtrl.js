@@ -1,34 +1,30 @@
-app.controller('favCtrl', function ($scope, myFactory) {
-  
-    $scope.data = [];
-  
-    // fetch all beers from DB
-    // myFactory.getBeersFromDB()
-    //   .then(function (beers) {
-    //     $scope.beers = beers;
-    //     console.log($scope.beers);
-    //   })
-    //   .catch(function (error) {
-    //     console.log(error)
-    //   });
-    
+app.controller('favCtrl', function ($scope, myService) {
 
-  
-    var flag = false;
-    var dynamicSort = function (prop, flag) {
-      return function (a, b) {
-        if (flag) {
-          return (a[prop] < b[prop]) ? -1 : (a[prop] > b[prop]) ? 1 : 0;
-        } else {
-          return (a[prop] > b[prop]) ? -1 : (a[prop] < b[prop]) ? 1 : 0;
-        }
-      };
+  $scope.favorites = myService.getFavorites();
+
+  $scope.removeFromFavorites = function () {
+    console.log(this.fav);
+    let deleted = myService.removeFromFavorites(this.$index);
+    if (deleted) {
+      $scope.favorites = myService.getFavorites();
     }
-    
-    // Sort Beers By Rating
-    $scope.sortBeers = function () {
-      $scope.beers.sort(dynamicSort('avarage', flag));
-      flag = !flag;
-    }
-  
-  })
+  }
+
+
+  var flag = false;
+  var dynamicSort = function (prop, flag) {
+    return function (a, b) {
+      if (flag) {
+        return (a[prop] < b[prop]) ? -1 : (a[prop] > b[prop]) ? 1 : 0;
+      } else {
+        return (a[prop] > b[prop]) ? -1 : (a[prop] < b[prop]) ? 1 : 0;
+      }
+    };
+  }
+
+  // Sort Favs By Rating
+  $scope.sortFavs = function (prop) {
+    $scope.favorites.sort(dynamicSort(prop, flag));
+    flag = !flag;
+  }
+})

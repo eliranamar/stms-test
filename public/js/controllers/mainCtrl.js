@@ -1,40 +1,21 @@
-app.controller('mainCtrl', function ($scope, myFactory) {
+app.controller('mainCtrl', function ($scope, myService) {
 
   $scope.movies = [];
 
-  // fetch all beers from DB
-  // myFactory.getBeersFromDB()
-  //   .then(function (beers) {
-  //     $scope.beers = beers;
-  //     console.log($scope.beers);
-  //   })
-  //   .catch(function (error) {
-  //     console.log(error)
-  //   });
-
-  myFactory.getDataFromAPI()
+  myService.getDataFromAPI()
     .then(function (response) {
-      console.log(response.data);
+      // console.log(response.data);
       $scope.movies = response.data.results;
-      console.log($scope.movies);
+      // console.log($scope.movies);
     })
+    .catch(function (error) {
+      console.log(error)
+    });
 
-
-  var flag = false;
-  var dynamicSort = function (prop, flag) {
-    return function (a, b) {
-      if (flag) {
-        return (a[prop] < b[prop]) ? -1 : (a[prop] > b[prop]) ? 1 : 0;
-      } else {
-        return (a[prop] > b[prop]) ? -1 : (a[prop] < b[prop]) ? 1 : 0;
-      }
-    };
-  }
-
-  // Sort Beers By Rating
-  $scope.sortBeers = function () {
-    $scope.beers.sort(dynamicSort('vote_average', flag));
-    flag = !flag;
+  $scope.addToFavorites = function () {
+    // console.log(this.movie);
+    let newFav = this.movie;
+    myService.addToFavorites(newFav);
   }
 
 })
